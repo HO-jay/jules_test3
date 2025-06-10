@@ -72,6 +72,22 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:text="Barcode Format: N/A" />
+
+        <Button
+            android:id="@+id/buttonCopyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Copy Extracted Text"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/buttonSavePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Save Picture"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

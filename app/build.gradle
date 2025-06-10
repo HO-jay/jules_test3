@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 33 // Target Android 13 (API level 33)
+    defaultConfig {
+        applicationId "com.example.imageprocessingapp"
+        minSdkVersion 21 // Minimum API level
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // If using Kotlin
+    // kotlinOptions {
+    // jvmTarget = '1.8'
+    // }
+
+    // If you have OpenCV as a module (e.g., a folder named 'opencv' in the root project)
+    // sourceSets {
+    //     main {
+    //         jniLibs.srcDirs = ['libs'] // If you have .so files directly
+    //     }
+    // }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // CameraX dependencies
+    def camerax_version = "1.3.0-rc01" // Check for the latest stable version
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    implementation "androidx.camera:camera-extensions:${camerax_version}" // Optional for extensions
+
+    // OpenCV dependency (This is a placeholder, actual integration might differ)
+    // You might need to download the OpenCV Android SDK and add it as a module
+    // or include it via a Maven repository if available and compatible.
+    // For example, if added as a module:
+    // implementation project(path: ':opencv')
+    // Or if you have the AAR/JAR files:
+    implementation files('libs/opencv-4.9.0-android-sdk.aar') // Example: Assuming OpenCV AAR is in libs
+    // You would need to download the OpenCV Android SDK and place the relevant AAR or configure the module.
+    // For a real build, ensure 'libs' folder is created at app level and contains the AAR.
+    // Also, ensure settings.gradle and project build.gradle are aware if it's a module.
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Guava for ListenableFuture (used by CameraX)
+    implementation 'com.google.guava:guava:31.1-android'
+
+    // If OpenCV is added as a module, you might not need the files() line above
+    // and instead would use:
+    // implementation project(path: ':opencv') // Assuming 'opencv' is the module name
+
+    // ML Kit Text Recognition
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.0'
+    // ML Kit Barcode Scanning
+    implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0'
+}

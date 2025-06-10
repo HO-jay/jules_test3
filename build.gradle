@@ -1,0 +1,22 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '8.1.1' apply false // Use a recent stable version
+    // id 'com.android.library' version '8.1.1' apply false // If you have library modules
+    // id 'org.jetbrains.kotlin.android' version '1.8.0' apply false // If using Kotlin
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// Define repositories for dependencies
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // You might need to add other repositories here, e.g., for OpenCV if it's not in Maven Central
+        // flatDir {
+        //     dirs 'libs' // If you have AAR/JAR files in a 'libs' folder
+        // }
+    }
+}

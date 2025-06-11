@@ -5,10 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import androidx.core.content.ContextCompat;
 import com.google.mlkit.vision.barcode.common.Barcode;
 
 public class BarcodeGraphic extends GraphicOverlay.Graphic {
-    private static final int BOX_COLOR = Color.BLUE;
+    // private static final int BOX_COLOR = Color.BLUE; // Replaced
     private static final float STROKE_WIDTH = 5.0f;
     private static final float TEXT_SIZE = 30.0f; // For drawing barcode value
 
@@ -22,13 +23,15 @@ public class BarcodeGraphic extends GraphicOverlay.Graphic {
         this.barcode = barcode;
 
         rectPaint = new Paint();
-        rectPaint.setColor(BOX_COLOR);
+        rectPaint.setColor(ContextCompat.getColor(overlay.getContext(), R.color.graphic_overlay_box_color));
         rectPaint.setStyle(Paint.Style.STROKE);
         rectPaint.setStrokeWidth(STROKE_WIDTH);
+        rectPaint.setAntiAlias(true);
 
         textPaint = new Paint();
-        textPaint.setColor(BOX_COLOR);
+        textPaint.setColor(ContextCompat.getColor(overlay.getContext(), R.color.graphic_overlay_text_color));
         textPaint.setTextSize(TEXT_SIZE);
+        textPaint.setAntiAlias(true);
     }
 
     @Override

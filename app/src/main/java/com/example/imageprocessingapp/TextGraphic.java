@@ -5,11 +5,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import androidx.core.content.ContextCompat;
 import com.google.mlkit.vision.text.Text;
 
 public class TextGraphic extends GraphicOverlay.Graphic {
-    private static final int TEXT_COLOR = Color.GREEN;
-    private static final float STROKE_WIDTH = 4.0f;
+    // private static final int TEXT_COLOR = Color.GREEN; // Replaced by R.color.graphic_overlay_box_color
+    private static final float STROKE_WIDTH = 5.0f; // Updated stroke width
     private static final float TEXT_SIZE = 35.0f; // Optional: for drawing text
 
     private final Paint rectPaint;
@@ -24,13 +25,15 @@ public class TextGraphic extends GraphicOverlay.Graphic {
         this.line = null;
 
         rectPaint = new Paint();
-        rectPaint.setColor(TEXT_COLOR);
+        rectPaint.setColor(ContextCompat.getColor(overlay.getContext(), R.color.graphic_overlay_box_color));
         rectPaint.setStyle(Paint.Style.STROKE);
         rectPaint.setStrokeWidth(STROKE_WIDTH);
+        rectPaint.setAntiAlias(true);
 
         textPaint = new Paint();
-        textPaint.setColor(TEXT_COLOR);
+        textPaint.setColor(ContextCompat.getColor(overlay.getContext(), R.color.graphic_overlay_text_color));
         textPaint.setTextSize(TEXT_SIZE);
+        textPaint.setAntiAlias(true);
     }
 
     public TextGraphic(GraphicOverlay overlay, Text.Line line) {
@@ -39,11 +42,16 @@ public class TextGraphic extends GraphicOverlay.Graphic {
         this.line = line;
 
         rectPaint = new Paint();
-        rectPaint.setColor(Color.YELLOW); // Different color for lines
+         // Using the same color for lines now, but could be different if needed
+        rectPaint.setColor(ContextCompat.getColor(overlay.getContext(), R.color.graphic_overlay_box_color));
         rectPaint.setStyle(Paint.Style.STROKE);
         rectPaint.setStrokeWidth(STROKE_WIDTH);
+        rectPaint.setAntiAlias(true);
 
         textPaint = new Paint();
+        textPaint.setColor(ContextCompat.getColor(overlay.getContext(), R.color.graphic_overlay_text_color));
+        textPaint.setTextSize(TEXT_SIZE); // Example size for line text if drawn
+        textPaint.setAntiAlias(true);
     }
 
 
